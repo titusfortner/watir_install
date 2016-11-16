@@ -17,7 +17,7 @@ class NewProject < Thor::Group
   end
 
   def user_name
-   # @user_name ||= git.config["user.name"]
+    @user_name ||= git.config["user.name"]
     return @user_name if @user_name
     @user_name = ask "Enter your Name:  "
     @git.config('user.name', @user_name)
@@ -25,7 +25,7 @@ class NewProject < Thor::Group
   end
 
   def user_email
-    # @user_email ||= git.config["user.email"]
+    @user_email ||= git.config["user.email"]
     return @user_email if @user_email
     @user_email = ask "Enter your Email: "
     @git.config('user.email', @user_email)
