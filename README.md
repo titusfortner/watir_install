@@ -1,23 +1,16 @@
 # WatirFramework
 
-Watir Framework provides all the basic configurations and access to all of the
-gems necessary to easily create and maintain a test suite. 
+This gem allows you to create a new directory for your project with sample templates
+to use to write your Watir tests. It includes a number of useful gems along with 
+the recommended default configurations to easily create and maintain your test suite.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'watir_framework'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
     $ gem install watir_framework
+
+And then execute with the name of your project:
+
+    $ watir_framework foobar
 
 ## Contributing
 
