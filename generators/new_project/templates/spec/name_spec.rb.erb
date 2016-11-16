@@ -8,10 +8,11 @@ describe <%= name.capitalize %> do
   end
 
   it "submits a search" do
+    search_data = <%= name.capitalize %>::Model::Search.new
     WatirDrops::PageObject.browser = Watir::Browser.new
     search_page = <%= name.capitalize %>::Home.visit
-    search_page.search('Foo')
-    expect(<%= name.capitalize %>::Results.new.first_result).to include "Foobar - Wikipedia"
+    search_page.search(search_data)
+    expect(<%= name.capitalize %>::Results.new.first_result).to include search_data.first_result
     WatirDrops::PageObject.browser.quit
   end
 end

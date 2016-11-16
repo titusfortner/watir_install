@@ -47,6 +47,7 @@ class NewProject < Thor::Group
     template "lib/name.rb.erb", File.join(name, "lib", "#{name}.rb")
     template "lib/pages/home.rb.erb", File.join(name, "lib", name, "pages", "home.rb")
     template "lib/pages/results.rb.erb", File.join(name, "lib", name, "pages", "results.rb")
+    template "lib/models/search.rb.erb", File.join(name, "lib", name, "models", "search.rb")
   end
 
   def spec_files
