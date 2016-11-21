@@ -4,7 +4,7 @@ require "watir_session"
 
 WatirSession.start
 
-include <%= name.capitalize %>
+include <%= name.split('_').map(&:capitalize).join %>
 
 RSpec.configure do |config|
   config.before(:each) do
