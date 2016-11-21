@@ -1,7 +1,6 @@
 require 'thor/group'
 require 'git'
 require 'active_support/inflector'
-require "highline/import"
 
 class NewProject < Thor::Group
   include Thor::Actions

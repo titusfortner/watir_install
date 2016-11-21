@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = "watir_framework"
-  spec.version       = "0.1.2"
+  spec.version       = "0.1.3.beta1"
   spec.authors       = ["Titus Fortner"]
   spec.email         = ["titusfortner@gmail.com"]
 
@@ -35,6 +35,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency('thor', '~> 0.19.1')
   spec.add_dependency "watir_drops", "~> 0.5.0"
-  spec.add_dependency "watir_model"
+  spec.add_dependency 'watir_model', "~> 0.2"
+  spec.add_dependency "watir_session", "~> 0.2"
   spec.add_dependency "git", "~> 1.3.0"
 end
