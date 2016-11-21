@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe <%= name.capitalize %> do
+describe <%= name.split('_').map(&:capitalize).join %> do
   let(:browser) { WatirSession.browser }
 
   it "starts a driver" do
@@ -10,10 +10,10 @@ describe <%= name.capitalize %> do
   it "submits a search" do
     WatirDrops::PageObject.browser = Watir::Browser.new
 
-    search_data = <%= name.capitalize %>::Model::Search.new
-    search_page = <%= name.capitalize %>::Home.visit
+    search_data = <%= name.split('_').map(&:capitalize).join %>::Model::Search.new
+    search_page = <%= name.split('_').map(&:capitalize).join %>::Home.visit
     search_page.search(search_data)
 
-    expect(<%= name.capitalize %>::Results.new.first_result).to include search_data.first_result
+    expect(<%= name.split('_').map(&:capitalize).join %>::Results.new.first_result).to include search_data.first_result
   end
 end

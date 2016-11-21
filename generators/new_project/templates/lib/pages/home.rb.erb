@@ -1,4 +1,4 @@
-module <%= name.capitalize %>
+module <%= name.split('_').map(&:capitalize).join %>
   class Home < WatirDrops::PageObject
 
     element(:search_term) { browser.text_field(name: 'q')}

@@ -1,4 +1,4 @@
-module <%= name.capitalize %>
+module <%= name.split('_').map(&:capitalize).join %>
 class Results < WatirDrops::PageObject
 
     elements(:results) { browser.divs(class: 'rc') }

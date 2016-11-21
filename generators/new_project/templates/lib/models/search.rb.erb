@@ -1,4 +1,4 @@
-module <%= name.capitalize %>
+module <%= name.split('_').map(&:capitalize).join %>
   module Model
     class Search < WatirModel
 
