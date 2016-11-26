@@ -9,6 +9,7 @@ include WatirFramework
 RSpec.configure do |config|
   config.before(:each) do
     WatirSession.before_each
+    WatirDrops::PageObject.browser = WatirSession.browser
   end
 
   config.after(:each) do

@@ -8,8 +8,6 @@ describe <%= name.split('_').map(&:capitalize).join %> do
   end
 
   it "submits a search" do
-    WatirDrops::PageObject.browser = Watir::Browser.new
-
     search_data = <%= name.split('_').map(&:capitalize).join %>::Model::Search.new
     search_page = <%= name.split('_').map(&:capitalize).join %>::Home.visit
     search_page.search(search_data)

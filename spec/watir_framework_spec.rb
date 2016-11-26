@@ -8,8 +8,6 @@ describe WatirFramework do
   end
 
   it "submits a search" do
-    WatirDrops::PageObject.browser = browser
-
     search_data = Model::Search.new
     search_page = Home.visit
     search_page.search(search_data)
