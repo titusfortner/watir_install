@@ -1,3 +1,7 @@
+### 0.1.7 (2016-11-26)
+
+* Fix Windows bugs
+
 ### 0.1.6 (2016-11-26)
 
 * Fix gemspec bug
