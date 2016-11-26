@@ -1,4 +1,10 @@
 #!/usr/bin/env ruby
 
-require File.expand_path('../../generators/new_project/generator', __FILE__)
-NewProject.start
+require "watir_framework"
+
+case ARGV.shift
+when 'generate'
+  NewProject.start ARGV
+else
+  raise StandardError, "command not supported"
+end
