@@ -3,7 +3,7 @@
 require "watir_framework"
 
 case ARGV.shift
-when 'generate'
+when 'generate', 'new', 'create', 'project'
   NewProject.start ARGV
 else
   raise StandardError, "command not supported"
