@@ -39,6 +39,7 @@ class NewProject < Thor::Group
     template "rakefile.rb.erb", "#{name}/Rakefile"
     template "readme.rb.erb", "#{name}/README.md"
     template "rspec.rb.erb", "#{name}/.rspec"
+    template "ruby-version.rb.erb", "#{name}/.ruby-version"
     template "travis.rb.erb", "#{name}/.travis.yml"
   end
 
