@@ -18,3 +18,4 @@ script: bundle exec rake spec
 env:
  - BROWSER=chrome
  - BROWSER=firefox
+ - BROWSER=phantomjs

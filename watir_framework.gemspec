@@ -39,5 +39,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'watir_model', "~> 0.2"
   spec.add_dependency "watir_session", "~> 0.2"
   spec.add_dependency "git", "~> 1.3.0"
-  spec.add_dependency "webdrivers", "~> 2.1"
+  spec.add_dependency "webdrivers", "~> 2.2"
 end
