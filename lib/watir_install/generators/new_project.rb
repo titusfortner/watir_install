@@ -8,6 +8,7 @@ module WatirInstall
       include Thor::Actions
 
       argument :name, type: :string, desc: 'The name of the test project'
+      argument :no_git, type: :string, desc: 'Do not initialize project with git'
 
       def self.source_root
         "#{File.dirname(__FILE__)}/new_project"
@@ -17,19 +18,17 @@ module WatirInstall
         @git ||= Git.init(name)
       end
 
-       def user_name
-         @user_name ||= git.config["user.name"]
-        return @user_name if @user_name
-        @user_name = ask "Enter your Name:  "
-        @git.config('user.name', @user_name)
+      def user_name
+        @user_name ||= git.config["user.name"] if git?
+        @user_name ||= ask "Enter your Name:  "
+        @git.config('user.name', @user_name) if git?
         @user_name
-       end
+      end
 
       def user_email
-        @user_email ||= git.config["user.email"]
-        return @user_email if @user_email
-        @user_email = ask "Enter your Email: "
-        @git.config('user.email', @user_email)
+        @user_email ||= git.config["user.email"] if git?
+        @user_email ||= ask "Enter your Email: "
+        @git.config('user.email', @user_email) if git?
         @user_email
       end
 
@@ -57,8 +56,14 @@ module WatirInstall
       end
 
       def initial_commit
-        git.lib.add('.', all: true)
-        git.commit("initial commit", {all: true})
+        if git?
+          git.lib.add('.', all: true)
+          git.commit("initial commit", {all: true})
+        end
+      end
+
+      def git?
+        no_git != 'true'
       end
     end
   end
