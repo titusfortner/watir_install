@@ -10,8 +10,11 @@ describe <%= name.split('_').map(&:capitalize).join %> do
   it "submits a search" do
     search_data = <%= name.split('_').map(&:capitalize).join %>::Model::Search.new
     search_page = <%= name.split('_').map(&:capitalize).join %>::Home.visit
+    expect(search_page.on_page?).to eq true
+
     search_page.search(search_data)
 
     expect(<%= name.split('_').map(&:capitalize).join %>::Results.new.first_result).to include search_data.first_result
+    expect(search_page.on_page?).to eq false
   end
 end
