@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
     f.match(%r{^(test|spec|features)/})
   end
   spec.bindir        = "bin"
-  spec.executables   = ['watir_framework', 'watir']
+  spec.executables   = ['watir']
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.13"
@@ -34,10 +34,10 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", "~> 3.0"
 
   spec.add_dependency 'thor', '~> 0.19.1'
-  spec.add_dependency 'selenium-webdriver', '~> 3.0.3'
-  spec.add_dependency "watir_drops", "~> 0.5.0"
+  spec.add_dependency 'selenium-webdriver', '~> 3.0', '>= 3.0.3'
+  spec.add_dependency "watir_drops", "~> 0.5"
   spec.add_dependency 'watir_model', "~> 0.2"
   spec.add_dependency "watir_session", "~> 0.2"
-  spec.add_dependency "git", "~> 1.3.0"
+  spec.add_dependency "git", "~> 1.3"
   spec.add_dependency "webdrivers", "~> 2.3"
 end

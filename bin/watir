@@ -1,3 +1,4 @@
 #!/usr/bin/env ruby
 
-load File.expand_path("../watir_framework", __FILE__)
+require 'watir_framework/cli'
+WatirFramework::CLI.start
