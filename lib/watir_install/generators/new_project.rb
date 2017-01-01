@@ -2,7 +2,7 @@ require 'thor/group'
 require 'git'
 require 'active_support/inflector'
 
-module WatirFramework
+module WatirInstall
   module Generators
     class NewProject < Thor::Group
       include Thor::Actions
@@ -19,19 +19,19 @@ module WatirFramework
 
        def user_name
          @user_name ||= git.config["user.name"]
-      #   return @user_name if @user_name
-      #   @user_name = ask "Enter your Name:  "
-      #   @git.config('user.name', @user_name)
-      #   @user_name
+        return @user_name if @user_name
+        @user_name = ask "Enter your Name:  "
+        @git.config('user.name', @user_name)
+        @user_name
        end
-      #
-      # def user_email
-      #   @user_email ||= git.config["user.email"]
-      #   return @user_email if @user_email
-      #   @user_email = ask "Enter your Email: "
-      #   @git.config('user.email', @user_email)
-      #   @user_email
-      # end
+
+      def user_email
+        @user_email ||= git.config["user.email"]
+        return @user_email if @user_email
+        @user_email = ask "Enter your Email: "
+        @git.config('user.email', @user_email)
+        @user_email
+      end
 
       def root_files
         template "gemfile.rb.tt", "#{name}/Gemfile"

@@ -1,14 +1,14 @@
 require 'thor'
-require 'watir_framework/generators/new_project'
+require 'watir_install/generators/new_project'
 
-module WatirFramework
+module WatirInstall
   class CLI < Thor
 
     desc "new <project_name>", "Create a new test project"
 
 
     def new(name)
-      WatirFramework::Generators::NewProject.start([name])
+      WatirInstall::Generators::NewProject.start([name])
     end
     
   end

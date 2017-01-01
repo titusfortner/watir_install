@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 
-require 'watir_framework/cli'
-WatirFramework::CLI.start
+require 'watir_install/cli'
+WatirInstall::CLI.start
