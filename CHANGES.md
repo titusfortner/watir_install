@@ -1,3 +1,8 @@
+### 0.2.0 (2017-01-01)
+
+* Rename to Watir Install
+* Reorganize to match Cheezy's testgen implementation
+
 ### 0.1.7 (2016-11-26)
 
 * Fix Windows bugs
