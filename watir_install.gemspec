@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["titusfortner@gmail.com"]
 
   spec.summary       = %q{UI Test Automation Framework}
-  spec.description   = %q{"Watir Framework provides everything necessary to quickly create maintainable automated test suites in an understandable and enjoyable way."}
+  spec.description   = %q{"Watir Install provides everything necessary to quickly create maintainable automated test suites in an understandable and enjoyable way."}
   spec.homepage      = "https://github.com/titusfortner/watir_install"
   spec.license       = "MIT"
 
