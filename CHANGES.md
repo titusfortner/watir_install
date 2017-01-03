@@ -1,3 +1,10 @@
+### 0.2.1 (2017-01-03)
+
+* Remove WatirSession requirement
+* Add Bundle Update
+* Add Support for Cucumber and Cheezy's gems
+* Using git is optional by flag
+
 ### 0.2.0 (2017-01-01)
 
 * Rename to Watir Install
