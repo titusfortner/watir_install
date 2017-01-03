@@ -1,18 +1,15 @@
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 require "<%= name.downcase %>"
-require "watir_session"
-
-WatirSession.start
 
 include <%= name.split('_').map(&:capitalize).join %>
 
 RSpec.configure do |config|
   config.before(:each) do
-    WatirSession.before_each
-    WatirDrops::PageObject.browser = WatirSession.browser
+    @browser = Watir::Browser.new
+    WatirDrops::PageObject.browser = @browser
   end
 
   config.after(:each) do
-    WatirSession.after_each
+    @browser.quit
   end
 end

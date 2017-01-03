@@ -75,7 +75,7 @@ module WatirInstall
           template "features/search.feature.tt", "#{name}/features/search.feature"
 
         else
-          template "spec/name_spec.rb.tt", "#{name}/spec/#{name}_spec.rb"
+          template "spec/search_spec.rb.tt", "#{name}/spec/search_spec.rb"
           template "spec/spec_helper.rb.tt", "#{name}/spec/spec_helper.rb"
         end
       end

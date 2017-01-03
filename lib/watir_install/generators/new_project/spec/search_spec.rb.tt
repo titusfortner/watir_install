@@ -1,12 +1,6 @@
 require "spec_helper"
 
 describe <%= name.split('_').map(&:capitalize).join %> do
-  let(:browser) { WatirSession.browser }
-
-  it "starts a driver" do
-    expect(browser.window).to exist
-  end
-
   it "submits a search" do
     search_data = <%= name.split('_').map(&:capitalize).join %>::Model::Search.new
     search_page = <%= name.split('_').map(&:capitalize).join %>::Home.visit
