@@ -3,7 +3,3 @@ require "watir_model"
 require '<%= name.downcase %>/pages/home'
 require '<%= name.downcase %>/pages/results'
 require '<%= name.downcase %>/models/search'
-
-module  <%= name.split('_').map(&:capitalize).join %>
-  # Your code goes here...
-end

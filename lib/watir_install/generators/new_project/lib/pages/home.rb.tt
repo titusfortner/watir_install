@@ -11,9 +11,5 @@ module <%= name.split('_').map(&:capitalize).join %>
       submit.click
     end
 
-    def on_page?
-        @browser.url == page_url
-    end
-
   end
 end

@@ -1,0 +1,13 @@
+module <%= name.split('_').map(&:capitalize).join %>
+  class Results
+    include PageObject
+
+    button(:submit, name: 'btnG')
+    h3(:result, css: '.g h3')
+
+    def first_result
+      self.result
+    end
+
+  end
+end
