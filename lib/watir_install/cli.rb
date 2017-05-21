@@ -1,5 +1,5 @@
 require 'thor'
-require 'watir_install/generators/new_project'
+require 'watir_install/generators/new'
 
 module WatirInstall
   class CLI < Thor
@@ -12,7 +12,7 @@ module WatirInstall
     def new(name)
       no_git = options[:no_git] ? 'true' : 'false'
       test_runner = options[:test_runner]
-      WatirInstall::Generators::NewProject.start([name, no_git, test_runner])
+      WatirInstall::Generators::New.start([name, no_git, test_runner])
     end
     
   end

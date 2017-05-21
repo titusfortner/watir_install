@@ -4,7 +4,7 @@ require 'active_support/inflector'
 
 module WatirInstall
   module Generators
-    class NewProject < Thor::Group
+    class New < Thor::Group
       include Thor::Actions
 
       argument :name, type: :string, desc: 'The name of the test project'
@@ -12,7 +12,7 @@ module WatirInstall
       argument :test_runner, type: :string, default: 'rspec', desc: 'Specify RSpec or Cucumber'
 
       def self.source_root
-        "#{File.dirname(__FILE__)}/new_project"
+        "#{File.dirname(__FILE__)}/new"
       end
 
       def git
