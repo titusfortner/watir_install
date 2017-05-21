@@ -1,0 +1,11 @@
+module <%= name.split('_').map(&:capitalize).join %>
+  module Model
+    class <%= klass %> < WatirModel
+
+    <% keys.each do |key| -%>
+  key(:<%= key %>) { }
+    <% end -%>
+
+    end
+  end
+end
