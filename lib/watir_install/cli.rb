@@ -1,6 +1,6 @@
 require 'thor'
-require 'watir_install/generators/new'
-require 'watir_install/generators/data'
+require 'require_all'
+require_rel 'generators'
 
 module WatirInstall
   class CLI < Thor
@@ -17,9 +17,14 @@ module WatirInstall
       send("generate_#{generated_type}", klass, *args)
     end
 
-    desc "generate_data <klass>", "Create a new data object"
+    desc "generate_data <Class>", "Create a new data object"
     def generate_data(klass, *args)
       WatirInstall::Generators::Data.start([klass, *args])
+    end
+
+    desc "generate_page <Class>", "Create a new page object"
+    def generate_page(klass, *args)
+      WatirInstall::Generators::Page.start([klass, *args])
     end
 
   end

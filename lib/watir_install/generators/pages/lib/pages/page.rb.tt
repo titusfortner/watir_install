@@ -1,0 +1,13 @@
+module <%= name.split('_').map(&:capitalize).join %>
+  class <%= klass %> < WatirDrops::PageObject
+
+    # Define url represented by page object if appropriate
+    # page_url {  }
+
+    # Update Element method tags and locators as necessary
+    <% elements.each do |element| -%>
+  element(:<%= element %>) { browser.element(id: '<%= element %>') }
+    <% end -%>
+
+  end
+end
