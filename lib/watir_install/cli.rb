@@ -30,7 +30,19 @@ module WatirInstall
     desc "generate_page <Class>", "Create a new page object"
 
     def generate_page(klass, url, *args)
-      WatirInstall::Generators::Page.start([klass, url, *args])
+      WatirInstall::Generators::Page.start([klass, url, 'false', *args])
+    end
+
+    desc "generate_scaffold <Class>", "Create a new page object"
+
+    def generate_scaffold(klass, url, *args)
+      WatirInstall::Generators::Data.start([klass, *args])
+      WatirInstall::Generators::Page.start(["#{klass}::List", url, 'false', *args])
+      new_url = url.empty? ? '' : "#{url}/new"
+      WatirInstall::Generators::Page.start(["#{klass}::New", new_url, 'true', *args])
+      # TODO: generate dynamic url method for Show & Edit
+      WatirInstall::Generators::Page.start(["#{klass}::Show", '', 'false', *args])
+      WatirInstall::Generators::Page.start(["#{klass}::Edit", '', 'true', *args])
     end
 
   end

@@ -15,13 +15,22 @@ page_url { "<%= url %>" }
     # Specify full Watir locator inside block
 
     # element(:foo) { browser.div(id: 'foo') }
+
     <% else -%>
 # Update Element method tags and locators as necessary
 
     <% elements.each do |element| -%>
-element(:<%= element %>) { browser.element(id: '<%= element %>') }
+element(:<%= element %>) { browser.<%= form == 'true' ? 'text_field' : 'element' %>(id: '<%= element %>') }
     <% end -%>
     <% end -%>
+    <% if form == 'true' %>
+    element(:submit) { browser.button(visible: true) }
 
+    def submit_form(<%= klass.downcase[/^[^:]*/] %> = nil)
+      <%= klass.downcase[/^[^:]*/] %> ||= Data::<%= klass[/^[^:]*/] %>.new
+      fill_form(<%= klass.downcase[/^[^:]*/] %>)
+      submit.click
+    end
+    <% end %>
   end
 end
