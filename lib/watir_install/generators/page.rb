@@ -8,7 +8,8 @@ module WatirInstall
       include Thor::Actions
 
       argument :klass, type: :string, desc: 'The page object being created'
-      argument :elements, type: :array, desc: 'These are elements on page'
+      argument :url, type: :string, default: '', desc: 'The Page URL'
+      argument :elements, required: false, default: [], type: :array, desc: 'These are elements on page'
 
       def self.source_root
         "#{File.dirname(__FILE__)}/pages"

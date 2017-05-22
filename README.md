@@ -14,13 +14,34 @@ the recommended default configurations to easily create and maintain your test s
 
     $ watir new project_name
 
-Options:
+    or
 
     $ watir new project_name --no_git true
 
 #### Generate Data
 
+    $ watir generate data DataName
+    
+    or
+    
     $ watir generate data DataName key1 key2 key3 key4
+
+
+#### Generate Page
+
+    $ watir generate page PageName
+    
+    or
+    
+    $ watir generate page PageName el1 el2 el3 el4
+    
+    or
+    
+    $ watir generate page PageName --url http://example.com
+
+    or
+    
+    $ watir generate page PageName el1 el2 el3 el4 --url http://example.com
 
 
 ## Contributing

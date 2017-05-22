@@ -2,8 +2,17 @@ module <%= name.split('_').map(&:capitalize).join %>
   module Model
     class <%= klass %> < WatirModel
 
+    <% if keys.empty? -%>
+# Define keys representing desired data
+    # Specify default data for each key inside block
+
+    # key(:foo) { 'Foo' }
+    <% else -%>
+  # Specify default data for each key inside block
+
     <% keys.each do |key| -%>
   key(:<%= key %>) { }
+    <% end -%>
     <% end -%>
 
     end

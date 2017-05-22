@@ -15,22 +15,23 @@ module WatirInstall
         "#{File.dirname(__FILE__)}/new"
       end
 
-      def git
-        @git ||= Git.init(name)
-      end
-
       def user_name
-        @user_name ||= git.config["user.name"] if git?
-        @user_name ||= ask "Enter your Name:  "
-        @git.config('user.name', @user_name) if git?
-        @user_name
+        unless no_git
+          @git = Git.init(name)
+          @user_name ||= @git.config["user.name"]
+          @user_name ||= ask "Enter your Name:  "
+          @git.config('user.name', @user_name)
+          @user_name
+        end
       end
 
       def user_email
-        @user_email ||= git.config["user.email"] if git?
-        @user_email ||= ask "Enter your Email: "
-        @git.config('user.email', @user_email) if git?
-        @user_email
+        unless no_git
+          @user_email ||= @git.config["user.email"]
+          @user_email ||= ask "Enter your Email: "
+          @git.config('user.email', @user_email)
+          @user_email
+        end
       end
 
       def root_files
@@ -86,14 +87,10 @@ module WatirInstall
       end
 
       def initial_commit
-        if git?
-          git.lib.add('.', all: true)
-          git.commit("initial commit", {all: true})
+        unless no_git
+          @git.lib.add('.', all: true)
+          @git.commit("initial commit", {all: true})
         end
-      end
-
-      def git?
-        no_git != 'true'
       end
     end
   end
