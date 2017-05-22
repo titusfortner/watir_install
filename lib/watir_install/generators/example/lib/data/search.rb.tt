@@ -1,9 +1,9 @@
 module <%= name.split('_').map(&:capitalize).join %>
-  module Model
-    class Search < WatirModel
+  module Data
+    class Search < Base
 
       key(:search_term) { 'foo' }
-      key(:first_result) { 'Foobar - Wikipedia' }
+      key(:wikipedia_result) { 'Foobar - Wikipedia' }
 
     end
   end

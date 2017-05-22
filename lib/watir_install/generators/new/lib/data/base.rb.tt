@@ -1,0 +1,7 @@
+module <%= name.split('_').map(&:capitalize).join %>
+  module Data
+    class Base < WatirModel
+
+    end
+  end
+end

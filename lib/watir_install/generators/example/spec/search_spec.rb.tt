@@ -2,11 +2,11 @@ require "spec_helper"
 
 describe <%= name.split('_').map(&:capitalize).join %> do
   it "submits a search" do
-    search_data = <%= name.split('_').map(&:capitalize).join %>::Model::Search.new
+    search_data = <%= name.split('_').map(&:capitalize).join %>::Data::Search.new
     search_page = <%= name.split('_').map(&:capitalize).join %>::Home.visit
 
     search_page.search(search_data)
 
-    expect(<%= name.split('_').map(&:capitalize).join %>::Results.new.first_result).to include search_data.first_result
+    expect(<%= name.split('_').map(&:capitalize).join %>::Results.new.title?(search_data.wikipedia_result)).to eq true
   end
 end

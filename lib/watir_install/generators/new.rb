@@ -9,7 +9,6 @@ module WatirInstall
 
       argument :name, type: :string, desc: 'The name of the test project'
       argument :no_git, type: :string, default: 'false', desc: 'Do not initialize project with git'
-      argument :test_runner, type: :string, default: 'rspec', desc: 'Specify RSpec or Cucumber'
 
       def self.source_root
         "#{File.dirname(__FILE__)}/new"
@@ -37,48 +36,24 @@ module WatirInstall
       def root_files
         template "gemfile.rb.tt", "#{name}/Gemfile"
         template "gitignore.rb.tt", "#{name}/.gitignore"
-        template "license.rb.tt", "#{name}/LICENSE.txt"
         template "rakefile.rb.tt", "#{name}/Rakefile"
         template "readme.rb.tt", "#{name}/README.md"
         template "ruby-version.rb.tt", "#{name}/.ruby-version"
         template "travis.rb.tt", "#{name}/.travis.yml"
-        if test_runner == 'cucumber'
-          template "cucumber.yml.tt", "#{name}/.cucumber.yml"
-        else
-          template "rspec.rb.tt", "#{name}/.rspec"
-        end
+        template "rspec.rb.tt", "#{name}/.rspec"
       end
 
       def lib_files
-        if test_runner == 'cucumber'
-          template "features/support/pages/home.rb.tt", "#{name}/features/support/pages/home.rb.rb"
-          template "features/support/pages/results.rb.tt", "#{name}/features/support/pages/results.rb"
-        else
-          template "lib/name.rb.tt", "#{name}/lib/#{name}.rb"
-          template "lib/pages/home.rb.tt", "#{name}/lib/#{name}/pages/home.rb"
-          template "lib/pages/results.rb.tt", "#{name}/lib/#{name}/pages/results.rb"
-        end
+        template "lib/name.rb.tt", "#{name}/lib/#{name}.rb"
+        template "lib/pages/base.rb.tt", "#{name}/lib/#{name}/pages/base.rb"
       end
 
       def data_files
-        if test_runner == 'cucumber'
-          template "config/data/data.yml.tt", "#{name}/config/data/data.yml"
-        else
-          template "lib/models/search.rb.tt", "#{name}/lib/#{name}/models/search.rb"
-        end
+        template "lib/data/base.rb.tt", "#{name}/lib/#{name}/data/base.rb"
       end
 
       def test_files
-        if test_runner == 'cucumber'
-          template "features/support/env.rb.tt", "#{name}/features/support/env.rb"
-          template "features/support/hooks.rb.tt", "#{name}/features/support/hooks.rb"
-          template "features/step_definitions/search_steps.rb.tt", "#{name}/features/step_definitions/search_steps.rb"
-          template "features/search.feature.tt", "#{name}/features/search.feature"
-
-        else
-          template "spec/search_spec.rb.tt", "#{name}/spec/search_spec.rb"
-          template "spec/spec_helper.rb.tt", "#{name}/spec/spec_helper.rb"
-        end
+        template "spec/spec_helper.rb.tt", "#{name}/spec/spec_helper.rb"
       end
 
       def bundle

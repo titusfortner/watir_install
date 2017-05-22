@@ -1,5 +1,5 @@
 module <%= name.split('_').map(&:capitalize).join %>
-  class <%= klass %> < WatirDrops::PageObject
+  class <%= klass %> < Base
 
     <% if url.empty? -%>
 # Define url represented by page object if appropriate

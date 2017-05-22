@@ -1,4 +1,4 @@
 require "watir_drops"
 require "watir_model"
-require_rel 'pages'
-require_rel 'data'
+require "require_all"
+require_rel "<%= name %>"

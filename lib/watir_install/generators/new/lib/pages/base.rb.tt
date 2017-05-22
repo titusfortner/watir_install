@@ -1,0 +1,5 @@
+module <%= name.split('_').map(&:capitalize).join %>
+  class Base < WatirDrops::PageObject
+
+  end
+end

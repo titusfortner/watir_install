@@ -1,6 +1,0 @@
-Feature: Google
-
-  Scenario: Search Results Found
-    Given I am on the Google Home Page
-    When I submit a search
-    Then I should see the results displayed
