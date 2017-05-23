@@ -15,7 +15,7 @@ module WatirInstall
       end
 
       def user_name
-        unless no_git
+        if no_git == 'false'
           @git = Git.init(name)
           @user_name ||= @git.config["user.name"]
           @user_name ||= ask "Enter your Name:  "
@@ -25,7 +25,7 @@ module WatirInstall
       end
 
       def user_email
-        unless no_git
+        if no_git == 'false'
           @user_email ||= @git.config["user.email"]
           @user_email ||= ask "Enter your Email: "
           @git.config('user.email', @user_email)
@@ -43,17 +43,20 @@ module WatirInstall
         template "rspec.rb.tt", "#{name}/.rspec"
       end
 
-      def lib_files
-        template "lib/name.rb.tt", "#{name}/lib/#{name}.rb"
-        template "lib/pages/base.rb.tt", "#{name}/lib/#{name}/pages/base.rb"
+      def test_files
+        template "spec/spec_helper.rb.tt", "#{name}/spec/spec_helper.rb"
       end
 
       def data_files
-        template "lib/data/base.rb.tt", "#{name}/lib/#{name}/data/base.rb"
+        template "spec/support/data/base.rb.tt", "#{name}/spec/support/data/base.rb"
       end
 
-      def test_files
-        template "spec/spec_helper.rb.tt", "#{name}/spec/spec_helper.rb"
+      def page_files
+        template "spec/support/pages/base.rb.tt", "#{name}/spec/support/pages/base.rb"
+      end
+
+      def support_files
+        template "spec/support/sauce_helpers.rb.tt", "#{name}/spec/support/sauce_helpers.rb"
       end
 
       def bundle
@@ -62,7 +65,7 @@ module WatirInstall
       end
 
       def initial_commit
-        unless no_git
+        if no_git == 'false'
           @git.lib.add('.', all: true)
           @git.commit("initial commit", {all: true})
         end

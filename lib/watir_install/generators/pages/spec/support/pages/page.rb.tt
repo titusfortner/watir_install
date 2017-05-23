@@ -1,0 +1,34 @@
+module <%= name.split('_').map(&:capitalize).join -%>
+<% if klass.include?(':') -%>
+::<%= klass[/^[^:]*/] -%>
+<% end %>
+  class <%= klass[/[^:]*$/] %> < <%= name.split('_').map(&:capitalize).join %>::Base
+
+    <% if url.empty? -%>
+# Define url represented by page object if appropriate
+
+    # page_url {  }
+<% else -%>
+page_url { "<%= url %>" }
+<% end %>
+
+<% if elements.empty? -%>
+    # Define elements representing contents of page
+<% end -%>
+    # Specify full Watir locator inside block
+    # element(:foo) { browser.div(id: 'foo') }
+<% elements.each do |element| -%>
+    element(:<%= element %>) {  }
+<% end -%>
+<% unless form.empty? -%>
+    element(:submit) { browser.button(visible: true) }
+
+    def submit_form(<%= form.downcase %> = nil)
+      <%= form.downcase %> ||= <%= name.split('_').map(&:capitalize).join %>::Data::<%= form %>.new
+      fill_form(<%= form.downcase %>)
+      submit.click
+      <%= form.downcase %>
+    end
+<% end %>
+  end
+end

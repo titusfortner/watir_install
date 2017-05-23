@@ -1,0 +1,24 @@
+module <%= name.split('_').map(&:capitalize).join %>
+  module Data
+    class <%= klass %> < Base
+
+      # Specify default data for each key inside block
+
+<% if keys.empty? -%>
+# Define keys representing desired data
+    # key(:foo) { 'Example Default String' }
+<% else -%>
+<% keys.each do |key| -%>
+<% data_type = key.include?(':') ? key[/[^:]*$/].to_sym : key.to_sym -%>
+<% key = key[/^[^:]*/] -%>
+<% if TRANSLATIONS.include? data_type -%>
+      key(:<%= key %>) { Defaults.translate :<%= data_type %> }
+<% else -%>
+      key(:<%= key %>) {  }
+  <% end -%>
+<% end -%>
+<% end -%>
+
+    end
+  end
+end

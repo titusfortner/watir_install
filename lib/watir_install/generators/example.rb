@@ -13,13 +13,13 @@ module WatirInstall
         'google_search'
       end
 
-      def lib_files
-        template "lib/pages/home.rb.tt", "lib/#{name}/pages/home.rb"
-        template "lib/pages/results.rb.tt", "lib/#{name}/pages/results.rb"
+      def support_files
+        template "spec/support/pages/home.rb.tt", "spec/support/pages/home.rb"
+        template "spec/support/pages/results.rb.tt", "spec/support/pages/results.rb"
       end
 
       def data_files
-        template "lib/data/search.rb.tt", "lib/#{name}/data/search.rb"
+        template "spec/support/data/search.rb.tt", "spec/support/data/search.rb"
       end
 
       def test_files

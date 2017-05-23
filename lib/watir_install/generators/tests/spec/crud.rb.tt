@@ -1,0 +1,26 @@
+require 'spec_helper'
+
+describe <%= name.split('_').map(&:capitalize).join %> do
+  let(:<%= klass.downcase %>) { <%= name.split('_').map(&:capitalize).join %>::Data::<%= klass %>.new }
+
+  it 'creates' do
+
+  end
+
+  it 'shows' do
+
+  end
+
+  it 'lists' do
+
+  end
+
+  it 'edits' do
+
+  end
+
+  it 'deletes' do
+
+  end
+
+end

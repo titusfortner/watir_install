@@ -9,7 +9,7 @@ module WatirInstall
 
       argument :klass, type: :string, desc: 'The page object being created'
       argument :url, type: :string, default: '', desc: 'The Page URL'
-      argument :form, type: :string, default: 'false', desc: 'Generates #submit_form'
+      argument :form, type: :string, default: '', desc: 'Generates #submit_form'
       argument :elements, required: false, default: [], type: :array, desc: 'These are elements on page'
 
       def self.source_root
@@ -17,11 +17,11 @@ module WatirInstall
       end
 
       def name
-        File.expand_path(File.dirname(__FILE__))[/([^\/]*)\/[^\/]*$/, 1]
+        Dir.pwd[/[^\/]*$/]
       end
 
       def data_files
-        template "lib/pages/page.rb.tt", "lib/#{name}/pages/#{klass.downcase.gsub('::', '/')}.rb"
+        template "spec/support/pages/page.rb.tt", "#{Dir.pwd}/spec/support/pages/#{klass.downcase.gsub('::', '/')}.rb"
       end
 
     end

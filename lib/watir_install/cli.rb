@@ -12,36 +12,51 @@ module WatirInstall
       WatirInstall::Generators::New.start([name, options[:no_git]])
     end
 
-    desc "generate <generated_type>", "Create a new data object"
+    desc "generate <generated_type>", "Generate a new object"
     method_option :url, type: :string, desc: "Do not initialize project with git"
+    method_option :form, type: :string, desc: "Do not initialize project with git"
 
     def generate(generated_type, klass, *args)
       url = options[:url] || ''
-      send("generate_#{generated_type}", klass, url, *args)
+      form = options[:form] || ''
+
+      send("generate_#{generated_type}", klass, url, form, *args)
     end
 
-    desc "generate_data <Class>", "Create a new data object"
+    desc "generate_data <Class>", "Generate a new data object"
 
-    def generate_data(klass, _url, *args)
+    def generate_data(klass, _url, _form, *args)
       WatirInstall::Generators::Data.start([klass, *args])
     end
 
-    desc "generate_page <Class>", "Create a new page object"
+    desc "generate_page <Class>", "Generate a new page object"
 
-    def generate_page(klass, url, *args)
-      WatirInstall::Generators::Page.start([klass, url, 'false', *args])
+    def generate_page(klass, url, form, *args)
+      form = klass[/[^:]*$/] if form == 'true'
+      klass = klass[/^[^:]*/]
+      WatirInstall::Generators::Page.start([klass, url, form, *args])
     end
 
-    desc "generate_scaffold <Class>", "Create a new page object"
+    desc "generate_test <Class>", "Generate a new test"
 
-    def generate_scaffold(klass, url, *args)
+    def generate_test(klass, _url, form, *args)
+      WatirInstall::Generators::Test.start([klass, form, *args])
+    end
+
+    desc "generate_scaffold <Class>", "Generate collection of data, pages and tests"
+
+    def generate_scaffold(klass, url, form, *args)
+      WatirInstall::Generators::Test.start([klass, 'true'])
+
       WatirInstall::Generators::Data.start([klass, *args])
-      WatirInstall::Generators::Page.start(["#{klass}::List", url, 'false', *args])
-      new_url = url.empty? ? '' : "#{url}/new"
-      WatirInstall::Generators::Page.start(["#{klass}::New", new_url, 'true', *args])
+
+      new_url = url.nil? ? '' : "#{url}/new"
+
+      WatirInstall::Generators::Page.start(["#{klass}::List", url, ''])
+      WatirInstall::Generators::Page.start(["#{klass}::New", new_url, klass, *args])
       # TODO: generate dynamic url method for Show & Edit
-      WatirInstall::Generators::Page.start(["#{klass}::Show", '', 'false', *args])
-      WatirInstall::Generators::Page.start(["#{klass}::Edit", '', 'true', *args])
+      WatirInstall::Generators::Page.start(["#{klass}::Show", '', '', *args])
+      WatirInstall::Generators::Page.start(["#{klass}::Edit", '', klass, *args])
     end
 
     desc "example", "Create a new test project"
