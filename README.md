@@ -18,6 +18,15 @@ the recommended default configurations to easily create and maintain your test s
 
     $ watir new project_name --no_git true
 
+#### Generate Test
+
+    $ watir generate test DataName
+    
+    or
+    
+    $ watir generate test DataName test1 test2 test3 test4
+
+
 #### Generate Data
 
     $ watir generate data DataName
@@ -41,7 +50,15 @@ the recommended default configurations to easily create and maintain your test s
 
     or
     
-    $ watir generate page PageName el1 el2 el3 el4 --url http://example.com
+    $ watir generate page PageName:DataName key1 key2 key3 key4 --form true
+
+    or
+
+    $ watir generate page PageName:DataName key1 key2 key3 key4 --form true --url http://example.com
+
+#### Generate Scaffolding
+
+    $ watir generate scaffold ObjectName el1 el2 el3 el4 --url http://example.com/object
 
 
 ## Contributing

@@ -1,3 +1,12 @@
+### 0.3.0 (2017-05-23)
+
+* Remove sample code from new command
+* Add generate test
+* Add generate data
+* Add generate page
+* Add generate scaffolding
+* Lots of formatting updates and comments
+
 ### 0.2.1 (2017-01-03)
 
 * Remove WatirSession requirement
