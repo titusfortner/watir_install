@@ -60,6 +60,9 @@ the recommended default configurations to easily create and maintain your test s
 
     $ watir generate scaffold ObjectName el1 el2 el3 el4 --url http://example.com/object
 
+## See Example Project
+
+    $ watir example
 
 ## Contributing
 
