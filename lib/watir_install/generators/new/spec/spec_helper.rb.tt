@@ -3,11 +3,10 @@ require "watir_model"
 require "require_all"
 require_rel "support/data"
 require_rel "support/pages"
-include <%= name.split('_').map(&:capitalize).join %>
+require_rel 'support/sauce_helpers' if ENV['USE_SAUCE'] == 'true'
 
-if ENV['USE_SAUCE'] == 'true'
-  require_rel 'support/sauce_helpers'
-end
+include <%= name.split('_').map(&:capitalize).join %>
+include Page
 
 RSpec.configure do |config|
   config.include SauceHelpers if ENV['USE_SAUCE'] == 'true'
@@ -19,7 +18,7 @@ RSpec.configure do |config|
                  Watir::Browser.new
                end
 
-    WatirDrops::PageObject.browser = @browser
+    Base.browser = @browser
   end
 
   config.after(:each) do

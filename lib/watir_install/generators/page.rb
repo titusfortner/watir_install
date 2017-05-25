@@ -21,7 +21,7 @@ module WatirInstall
       end
 
       def data_files
-        template "spec/support/pages/page.rb.tt", "#{Dir.pwd}/spec/support/pages/#{klass.downcase.gsub('::', '/')}.rb"
+        template "spec/support/pages/page.rb.tt", "#{Dir.pwd}/spec/support/pages/#{klass.downcase.gsub(':', '/')}.rb"
       end
 
     end

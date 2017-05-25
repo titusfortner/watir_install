@@ -1,5 +1,7 @@
 module <%= name.split('_').map(&:capitalize).join %>
-  class Base < WatirDrops::PageObject
+  module Page
+    class Base < WatirDrops::PageObject
 
+    end
   end
 end

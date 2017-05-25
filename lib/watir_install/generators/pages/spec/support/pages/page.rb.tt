@@ -1,8 +1,5 @@
-module <%= name.split('_').map(&:capitalize).join -%>
-<% if klass.include?(':') -%>
-::<%= klass[/^[^:]*/] -%>
-<% end %>
-  class <%= klass[/[^:]*$/] %> < <%= name.split('_').map(&:capitalize).join %>::Base
+module <%= name.split('_').map(&:capitalize).join %>
+  class <%= klass.tr(':', '') %> < Page::Base
 
     <% if url.empty? -%>
 # Define url represented by page object if appropriate
