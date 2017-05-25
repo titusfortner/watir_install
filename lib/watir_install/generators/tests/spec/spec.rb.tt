@@ -1,17 +1,19 @@
 require 'spec_helper'
 
-describe <%= name.split('_').map(&:capitalize).join %>::Data::<%= klass %> do
+module <%= name.split('_').map(&:capitalize).join %>
+  describe Data::<%= klass %> do
 
-  let(:<%= klass.downcase %>) { <%= name.split('_').map(&:capitalize).join %>::Data::<%= klass %>.new }
+    let(:<%= klass.downcase %>) { Data::<%= klass %>.new }
 
 <% if specs.empty? -%>
-  # Add RSpec `it` statements
+    # Add RSpec `it` statements
 <% else -%>
 <% specs.each do |spec| %>
-  it '<%= spec -%>' do
+    it '<%= spec -%>' do
+
+    end
+<% end -%>
+<% end -%>
 
   end
-<% end -%>
-<% end -%>
-
 end

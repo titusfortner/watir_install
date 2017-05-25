@@ -1,24 +1,24 @@
 module <%= name.split('_').map(&:capitalize).join %>
-  class <%= klass.tr(':', '') %> < Page::Base
+  class <%= klass.gsub('::', '') %> < Page::Base
 
-    <% if url.empty? -%>
-# Define url represented by page object if appropriate
-
+<% if url.empty? -%>
+    # Define url represented by page object if appropriate
     # page_url {  }
 <% else -%>
-<% @no_base = url =~ %r{^(about|data|https?):}i  -%>
-<% if @no_base -%>
+<% if url =~ %r{^(about|data|https?):}i -%>
     page_url { "<%= url %>" }
 <% else -%>
-page_url { "#{Site.base_url}<%= url %>" }
+    page_url { "#{Site.base_url}<%= url %>" }
 <% end -%>
-<% end %>
+<% end -%>
+
 
 <% if elements.empty? -%>
     # Define elements representing contents of page
 <% end -%>
     # Specify full Watir locator inside block
     # element(:foo) { browser.div(id: 'foo') }
+
 <% elements.each do |element| -%>
     element(:<%= element %>) {  }
 <% end -%>
@@ -26,7 +26,7 @@ page_url { "#{Site.base_url}<%= url %>" }
     element(:submit) { browser.button(visible: true) }
 
     def submit_form(<%= form.downcase %> = nil)
-      <%= form.downcase %> ||= <%= name.split('_').map(&:capitalize).join %>::Data::<%= form %>.new
+      <%= form.downcase %> ||= Data::<%= form %>.new
       fill_form(<%= form.downcase %>)
       submit.click
       <%= form.downcase %>

@@ -25,7 +25,7 @@ module WatirInstall
       end
 
       def page_files
-        file = "#{Dir.pwd}/spec/support/pages/#{klass.downcase.gsub(':', '/')}.rb"
+        file = "#{Dir.pwd}/spec/support/pages/#{klass.downcase.gsub('::', '/')}.rb"
         template "spec/support/pages/page.rb.tt", file
         @git.add(file) if @git
       end

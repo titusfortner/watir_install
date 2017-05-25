@@ -8,8 +8,8 @@ module WatirInstall
       include Thor::Actions
 
       argument :name, type: :string, desc: 'The name of the test project'
-      argument :no_git, type: :string, required: false, default: 'false', desc: 'Do not initialize project with git'
       argument :base_url, type: :string, required: false, default: '', desc: 'Set a root url for the project'
+      argument :no_git, type: :string, required: false, default: 'false', desc: 'Do not initialize project with git'
 
       def self.source_root
         "#{File.dirname(__FILE__)}/new"

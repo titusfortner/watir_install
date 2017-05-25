@@ -1,26 +1,28 @@
 require 'spec_helper'
 
-describe <%= name.split('_').map(&:capitalize).join %> do
-  let(:<%= klass.downcase %>) { <%= name.split('_').map(&:capitalize).join %>::Data::<%= klass %>.new }
+module <%= name.split('_').map(&:capitalize).join %>
+  describe <%= name.split('_').map(&:capitalize).join %> do
+    let(:<%= klass.downcase %>) { Data::<%= klass %>.new }
 
-  it 'creates' do
+    it 'creates' do
+
+    end
+
+    it 'shows' do
+
+    end
+
+    it 'lists' do
+
+    end
+
+    it 'edits' do
+
+    end
+
+    it 'deletes' do
+
+    end
 
   end
-
-  it 'shows' do
-
-  end
-
-  it 'lists' do
-
-  end
-
-  it 'edits' do
-
-  end
-
-  it 'deletes' do
-
-  end
-
 end
