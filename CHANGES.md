@@ -1,3 +1,10 @@
+### 0.3.1 (2017-05-25)
+
+* Fix name spacing
+* Fix Sauce issues
+* Add base_url support to new command
+* Add git tracking for generated files
+
 ### 0.3.0 (2017-05-23)
 
 * Remove sample code from new command
