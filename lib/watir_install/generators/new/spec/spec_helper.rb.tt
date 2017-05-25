@@ -1,10 +1,14 @@
 ENV['USE_SAUCE'] ||= 'false'
+<% unless base_url.empty? -%>
+ENV['BASE_URL'] ||= "<%= base_url %>"
+<% end -%>
 
 require "watir_drops"
 require "watir_model"
 require "require_all"
 require_rel "support/data"
 require_rel "support/pages"
+require_rel "support/site"
 require_rel 'support/sauce_helpers' if ENV['USE_SAUCE'] == 'true'
 
 include <%= name.split('_').map(&:capitalize).join %>
@@ -21,6 +25,7 @@ RSpec.configure do |config|
                end
 
     Base.browser = @browser
+    Site.base_url = ENV['BASE_URL']
   end
 
   config.after(:each) do

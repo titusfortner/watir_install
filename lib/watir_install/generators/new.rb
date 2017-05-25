@@ -8,7 +8,8 @@ module WatirInstall
       include Thor::Actions
 
       argument :name, type: :string, desc: 'The name of the test project'
-      argument :no_git, type: :string, default: 'false', desc: 'Do not initialize project with git'
+      argument :no_git, type: :string, required: false, default: 'false', desc: 'Do not initialize project with git'
+      argument :base_url, type: :string, required: false, default: '', desc: 'Set a root url for the project'
 
       def self.source_root
         "#{File.dirname(__FILE__)}/new"
@@ -57,6 +58,7 @@ module WatirInstall
 
       def support_files
         template "spec/support/sauce_helpers.rb.tt", "#{name}/spec/support/sauce_helpers.rb"
+        template "spec/support/site.rb.tt", "#{name}/spec/support/site.rb"
       end
 
       def bundle

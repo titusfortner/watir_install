@@ -7,9 +7,10 @@ module WatirInstall
 
     desc "new <project_name>", "Create a new test project"
     method_option :no_git, type: :boolean, desc: "Do not initialize project with git"
+    method_option :base_url, type: :string, desc: "Set a root url for the project"
 
     def new(name)
-      WatirInstall::Generators::New.start([name, options[:no_git]])
+      WatirInstall::Generators::New.start([name, options[:no_git], options[:base_url]])
     end
 
     desc "generate <generated_type>", "Generate a new object"
