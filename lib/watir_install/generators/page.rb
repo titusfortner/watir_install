@@ -16,12 +16,18 @@ module WatirInstall
         "#{File.dirname(__FILE__)}/pages"
       end
 
+      def git
+        @git = Git.open('./') if Dir.entries('./').include?('.git')
+      end
+
       def name
         Dir.pwd[/[^\/]*$/]
       end
 
-      def data_files
-        template "spec/support/pages/page.rb.tt", "#{Dir.pwd}/spec/support/pages/#{klass.downcase.gsub(':', '/')}.rb"
+      def page_files
+        file = "#{Dir.pwd}/spec/support/pages/#{klass.downcase.gsub(':', '/')}.rb"
+        template "spec/support/pages/page.rb.tt", file
+        @git.add(file) if @git
       end
 
     end

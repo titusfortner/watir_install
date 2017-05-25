@@ -21,12 +21,18 @@ module WatirInstall
         "#{File.dirname(__FILE__)}/data"
       end
 
+      def git
+        @git = Git.open('./') if Dir.entries('./').include?('.git')
+      end
+
       def name
         Dir.pwd[/[^\/]*$/]
       end
 
       def data_files
-        template "spec/support/data/data.rb.tt", "#{Dir.pwd}/spec/support/data/#{klass.downcase}.rb"
+        file = "#{Dir.pwd}/spec/support/data/#{klass.downcase}.rb"
+        template "spec/support/data/data.rb.tt", file
+        @git.add(file) if @git
       end
 
     end

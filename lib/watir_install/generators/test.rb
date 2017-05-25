@@ -15,16 +15,19 @@ module WatirInstall
         "#{File.dirname(__FILE__)}/tests"
       end
 
+      def git
+        @git = Git.open('./') if Dir.entries('./').include?('.git')
+      end
+
       def name
         Dir.pwd[/[^\/]*$/]
       end
 
       def data_files
-        if form == 'true'
-          template "spec/crud.rb.tt", "#{Dir.pwd}/spec/#{klass.downcase}_spec.rb"
-        else
-          template "spec/spec.rb.tt", "#{Dir.pwd}/spec/#{klass.downcase}_spec.rb"
-        end
+        file = "#{Dir.pwd}/spec/#{klass.downcase}_spec.rb"
+        erb = form == 'true' ? "crud" : "spec"
+        template "spec/#{erb}.rb.tt", file
+        @git.add(file) if @git
       end
 
     end
