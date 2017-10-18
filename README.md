@@ -20,11 +20,11 @@ the recommended default configurations to easily create and maintain your test s
 
 #### Generate Test
 
-    $ watir generate test DataName
+    $ watir generate test TestName
     
     or
     
-    $ watir generate test DataName test1 test2 test3 test4
+    $ watir generate test TestName test1 test2 test3 test4
 
 
 #### Generate Data
