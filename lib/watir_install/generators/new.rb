@@ -39,7 +39,6 @@ module WatirInstall
         template "gitignore.rb.tt", "#{name}/.gitignore"
         template "rakefile.rb.tt", "#{name}/Rakefile"
         template "readme.rb.tt", "#{name}/README.md"
-        template "ruby-version.rb.tt", "#{name}/.ruby-version"
         template "travis.rb.tt", "#{name}/.travis.yml"
         template "rspec.rb.tt", "#{name}/.rspec"
       end
