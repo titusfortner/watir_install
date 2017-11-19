@@ -38,5 +38,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'data_magic'
   spec.add_dependency 'activesupport', '~> 4.0', '>= 4.1.11'
   spec.add_dependency "git", "~> 1.3"
-  spec.add_dependency "webdrivers", "~> 2.3"
+  spec.add_dependency 'webdrivers', '~> 3.0', '>= 3.1.0'
 end
