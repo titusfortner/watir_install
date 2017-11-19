@@ -4,6 +4,7 @@ ENV['BASE_URL'] ||= "<%= base_url %>"
 <% end -%>
 
 require "watir_drops"
+require "webdrivers"
 require "watir_model"
 require "require_all"
 require_rel "support/data"
