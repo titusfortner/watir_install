@@ -1,0 +1,8 @@
+require 'spec_helper'
+
+RSpec.describe <%= name.split('_').map(&:capitalize).join %> do
+  it "opens a browser" do
+    browser = Site::<%= name.split('_').map(&:capitalize).join %>.browser
+    expect(browser).to_not be_nil
+  end
+end

@@ -1,0 +1,7 @@
+module <%= name.split('_').map(&:capitalize).join %>
+  module Site
+    class <%= name.split('_').map(&:capitalize).join %>
+
+    end
+  end
+end

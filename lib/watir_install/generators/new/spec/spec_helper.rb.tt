@@ -1,36 +1,42 @@
 ENV['USE_SAUCE'] ||= 'false'
-<% unless base_url.empty? -%>
-ENV['BASE_URL'] ||= "<%= base_url %>"
-<% end -%>
 
 require "watir_drops"
-require "webdrivers"
 require "watir_model"
+require "config_model"
+require 'webdrivers'
+require 'ui2api'
+require 'watigiri'
 require "require_all"
-require_rel "support/data"
-require_rel "support/pages"
-require_rel "support/site"
-require_rel 'support/sauce_helpers' if ENV['USE_SAUCE'] == 'true'
+require_rel 'support'
 
 include <%= name.split('_').map(&:capitalize).join %>
-include Page
 
 RSpec.configure do |config|
-  config.include SauceHelpers if ENV['USE_SAUCE'] == 'true'
+  @config = Model::Config.new
+
+  require_rel "support/helpers/sauce_labs" if @config.use_sauce
+
+  Site::<%= name.split('_').map(&:capitalize).join %>.base_url = @config.base_url
+  UI2API::Base.base_url = Site::<%= name.split('_').map(&:capitalize).join %>.base_url
+
+  config.include SauceLabs if @config.use_sauce
+  config.include Page
 
   config.before(:each) do |test|
-    @browser = if ENV['USE_SAUCE'] == 'true'
+    @config = Model::Config.new
+    @browser = if @config.use_sauce
                  initialize_driver(test.full_description)
                else
                  Watir::Browser.new
                end
 
-    Base.browser = @browser
-    Site.base_url = ENV['BASE_URL']
+    WatirDrops::PageObject.browser = @browser
+    Site::<%= name.split('_').map(&:capitalize).join %>.browser = @browser
+    @site = Site::<%= name.split('_').map(&:capitalize).join %>.new
   end
 
-  config.after(:each) do
-    submit_results(@browser.wd.session_id, !test.exception) if ENV['USE_SAUCE'] == 'true'
+  config.after(:each) do |example|
+    submit_results(@browser, !example.exception) if @config.use_sauce
     @browser.quit
   end
 end

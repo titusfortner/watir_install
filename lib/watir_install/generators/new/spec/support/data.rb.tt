@@ -1,6 +1,8 @@
+require 'faker'
+
 module <%= name.split('_').map(&:capitalize).join %>
-  module Page
-    class Base < WatirDrops::PageObject
+  module Model
+    class Base < WatirModel
 
     end
   end

@@ -1,0 +1,7 @@
+module <%= name.split('_').map(&:capitalize).join %>
+  module API
+    class Base < UI2API::Base
+
+    end
+  end
+end

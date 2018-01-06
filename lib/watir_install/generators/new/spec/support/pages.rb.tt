@@ -1,0 +1,11 @@
+module <%= name.split('_').map(&:capitalize).join %>
+  module Page
+    class Base < WatirDrops::PageObject
+
+    def self.base_url
+      Site::<%= name.split('_').map(&:capitalize).join %>.base_url
+    end
+
+    end
+  end
+end

@@ -15,8 +15,14 @@ module WatirInstall
         "#{File.dirname(__FILE__)}/new"
       end
 
+      def git?
+        return false if @git == false || no_git != 'false'
+        response = ask "Do you want to initialize with git? (Y/N)"
+        @git = response[0].downcase == 'y'
+      end
+
       def user_name
-        if no_git == 'false'
+        if git?
           @git = Git.init(name)
           @user_name ||= @git.config["user.name"]
           @user_name ||= ask "Enter your Name:  "
@@ -26,7 +32,7 @@ module WatirInstall
       end
 
       def user_email
-        if no_git == 'false'
+        if git?
           @user_email ||= @git.config["user.email"]
           @user_email ||= ask "Enter your Email: "
           @git.config('user.email', @user_email)
@@ -39,25 +45,41 @@ module WatirInstall
         template "gitignore.rb.tt", "#{name}/.gitignore"
         template "rakefile.rb.tt", "#{name}/Rakefile"
         template "readme.rb.tt", "#{name}/README.md"
-        template "travis.rb.tt", "#{name}/.travis.yml"
         template "rspec.rb.tt", "#{name}/.rspec"
+        template "travis.rb.tt", "#{name}/.travis.yml"
       end
 
       def test_files
         template "spec/spec_helper.rb.tt", "#{name}/spec/spec_helper.rb"
+        template "spec/name_spec.rb.tt", "#{name}/spec/#{name}_spec.rb"
+      end
+
+      def api_files
+        template "spec/support/apis.rb.tt", "#{name}/spec/support/apis.rb"
+        template "common/empty.rb.tt", "#{name}/spec/support/apis/.keep"
+      end
+
+      def config_files
+        template "common/empty.rb.tt", "#{name}/spec/support/config/data/config.yml"
       end
 
       def data_files
-        template "spec/support/data/base.rb.tt", "#{name}/spec/support/data/base.rb"
+        template "spec/support/data.rb.tt", "#{name}/spec/support/data.rb"
+        template "spec/support/data/config.rb.tt", "#{name}/spec/support/data/config.rb"
+      end
+
+      def helper_files
+        template "spec/support/helpers/sauce_labs.rb.tt", "#{name}/spec/support/helpers/sauce_labs.rb"
       end
 
       def page_files
-        template "spec/support/pages/base.rb.tt", "#{name}/spec/support/pages/base.rb"
+        template "spec/support/pages.rb.tt", "#{name}/spec/support/pages.rb"
+        template "common/empty.rb.tt", "#{name}/spec/support/pages/.keep"
       end
 
-      def support_files
-        template "spec/support/sauce_helpers.rb.tt", "#{name}/spec/support/sauce_helpers.rb"
-        template "spec/support/site.rb.tt", "#{name}/spec/support/site.rb"
+      def site_files
+        template "spec/support/sites.rb.tt", "#{name}/spec/support/sites.rb"
+        template "spec/support/sites/name.rb.tt", "#{name}/spec/support/sites/#{name}.rb"
       end
 
       def bundle
@@ -66,9 +88,9 @@ module WatirInstall
       end
 
       def initial_commit
-        if no_git == 'false'
+        if git?
           @git.lib.add('.', all: true)
-          @git.commit("initial commit", {all: true})
+          @git.commit("initial commit by Watir Install. http://github.com/titusfortner/watir_install", {all: true})
         end
       end
     end
