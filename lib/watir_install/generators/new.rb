@@ -17,7 +17,7 @@ module WatirInstall
 
       def git?
         return @git unless @git.nil?
-        return false unless no_git
+        return false if no_git
         response = ask "Do you want to initialize with git? (Y/N)"
         @git = response[0].downcase == 'y'
       end
