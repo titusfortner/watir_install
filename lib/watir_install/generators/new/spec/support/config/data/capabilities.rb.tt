@@ -1,0 +1,20 @@
+# Example Capabilities for use with Model::Capabilities
+# Initialize with these values by setting `ENV['CAPABILITIES'] = 'win_fox'`, etc
+# Note that the keys in this file need to be symbols, not strings
+#
+
+:win_chrome:
+  browser_name: chrome
+  platform: Windows 10
+
+:mac_chrome:
+  browser_name: chrome
+  platform: macOS 10.13
+
+:win_fox:
+  browser_name: firefox
+  platform: Windows 10
+
+:mac_fox:
+  browser_name: firefox
+  platform: macOS 10.13

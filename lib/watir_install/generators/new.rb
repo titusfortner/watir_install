@@ -62,11 +62,15 @@ module WatirInstall
 
       def config_files
         template "common/empty.rb.tt", "#{name}/spec/support/config/data/config.yml"
+        template "spec/support/config/data/capabilities.rb.tt", "#{name}/spec/support/config/data/capabilities.yml"
+        template "spec/support/config/data/sauce_credentials.rb.tt", "#{name}/spec/support/config/data/sauce_credentials.yml"
       end
 
       def data_files
         template "spec/support/data.rb.tt", "#{name}/spec/support/data.rb"
+        template "spec/support/data/capabilities.rb.tt", "#{name}/spec/support/data/capabilities.rb"
         template "spec/support/data/config.rb.tt", "#{name}/spec/support/data/config.rb"
+        template "spec/support/data/sauce_credentials.rb.tt", "#{name}/spec/support/data/sauce_credentials.rb"
       end
 
       def helper_files

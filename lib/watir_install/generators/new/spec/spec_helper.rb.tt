@@ -1,5 +1,3 @@
-ENV['USE_SAUCE'] ||= 'false'
-
 require "watir_drops"
 require "watir_model"
 require "config_model"
@@ -10,6 +8,8 @@ require "require_all"
 require_rel 'support'
 
 include <%= name.split('_').map(&:capitalize).join %>
+
+WatirModel.yml_directory = 'spec/support/config/data/'
 
 RSpec.configure do |config|
   @config = Model::Config.new
