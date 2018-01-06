@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 module <%= name.split('_').map(&:capitalize).join %>
-  describe Data::<%= klass %> do
+  RSpec.describe "<%= klass.capitalize %>" do
 
-    let(:<%= klass.downcase %>) { Data::<%= klass %>.new }
+    let(:<%= klass.downcase %>) { Model::<%= klass.capitalize %>.new }
+    let(:<%= name.underscore %>) { Site::<%= name.split('_').map(&:capitalize).join %>.new }
 
 <% if specs.empty? -%>
     # Add RSpec `it` statements
