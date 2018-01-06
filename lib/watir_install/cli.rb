@@ -6,8 +6,8 @@ module WatirInstall
   class CLI < Thor
 
     desc "new <project_name>", "Create a new test project"
-    method_option :no_git, type: :boolean, desc: "Do not initialize project with git"
-    method_option :base_url, type: :string, desc: "Set a root url for the project"
+    method_option :no_git, type: :boolean, default: false, desc: "Do not initialize project with git"
+    method_option :base_url, type: :string, default: '', desc: "Set a root url for the project"
 
     def new(name)
       WatirInstall::Generators::New.start([name, options[:base_url], options[:no_git]])
