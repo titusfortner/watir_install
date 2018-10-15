@@ -7,6 +7,6 @@ describe <%= name.split('_').map(&:capitalize).join %> do
 
     login_page.login_as(invalid_data)
 
-    expect(<%= name.split('_').map(&:capitalize).join %>::Session.new.invalid_message.present?.to eq true
+    expect(<%= name.split('_').map(&:capitalize).join %>::Session.new.invalid_message.present?).to eq true
   end
 end
