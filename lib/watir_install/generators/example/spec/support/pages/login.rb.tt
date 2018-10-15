@@ -1,13 +1,13 @@
 module <%= name.split('_').map(&:capitalize).join %>
   class Login < Base
 
-    element(:username) { browser.input(id: 'session_email') }
-    element(:password) { browser.input(id: 'session_password') }
-    element(:sign_in_button) { browser.input(data-test: 'submit') }
+    element(:username) { browser.input(:id =>'session_email') }
+    element(:password) { browser.input(:id =>'session_password') }
+    element(:sign_in_button) { browser.input(:data-test =>'submit') }
 
     page_url { 'https://www.a-testaddressbook.com/login' }
 
-    def login_as(user,pass) do
+    def login_as(user,pass)
       username(user)
       password(pass)
       sign_in_button.click
