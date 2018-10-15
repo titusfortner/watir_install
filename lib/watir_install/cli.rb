@@ -64,7 +64,7 @@ module WatirInstall
     method_option :no_git, type: :boolean, desc: "Do not initialize project with git"
 
     def example
-      WatirInstall::Generators::New.start(['google_search', options[:no_git]])
+      WatirInstall::Generators::New.start(['address_book', options[:no_git]])
       WatirInstall::Generators::Example.start
     end
 

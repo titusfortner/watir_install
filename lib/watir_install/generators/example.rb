@@ -19,7 +19,7 @@ module WatirInstall
       end
 
       def data_files
-        template "spec/support/data/search.rb.tt", "spec/support/data/invald_user.rb"
+        template "spec/support/data/invalid_user.rb.tt", "spec/support/data/invald_user.rb"
       end
 
       def test_files
