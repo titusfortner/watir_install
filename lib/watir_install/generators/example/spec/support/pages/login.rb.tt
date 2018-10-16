@@ -1,9 +1,9 @@
 module <%= name.split('_').map(&:capitalize).join %>
   class Login < Page::Base
 
-    element(:username) { browser.input(:id =>'session_email') }
-    element(:password) { browser.input(:id =>'session_password') }
-    element(:sign_in_button) { browser.input(:data-test =>'submit') }
+    element(:username) { browser.input(id: 'session_email') }
+    element(:password) { browser.input(id: 'session_password') }
+    element(:sign_in_button) { browser.input(data-test: 'submit') }
 
     page_url { 'https://www.a-testaddressbook.com/login' }
 
