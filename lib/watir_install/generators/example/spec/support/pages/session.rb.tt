@@ -3,7 +3,7 @@ module <%= name.split('_').map(&:capitalize).join %>
 
     element(:home_link) { browser.link(text: 'Home')}
     element(:sign_in_link) { browser.link(text: 'Sign In') }
-    element(:invalid_message) { browser.element(data-test: 'notice') } 
+    element(:invalid_message) { browser.element('data-test': 'notice') } 
 
     page_url { 'https://www.a-testaddressbook.com/session' }
 
