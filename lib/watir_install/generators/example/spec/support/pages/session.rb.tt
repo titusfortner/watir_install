@@ -1,5 +1,5 @@
 module <%= name.split('_').map(&:capitalize).join %>
-  class Session < BasePage
+  class Session < Page::Base
 
     element(:home_link) { browser.link(:text =>Home')}
     element(:sign_in_link) { browser.link(:text =>'Sign In') }
