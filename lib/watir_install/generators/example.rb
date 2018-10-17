@@ -10,20 +10,20 @@ module WatirInstall
       end
 
       def name
-        'google_search'
+        'address_book'
       end
 
       def support_files
-        template "spec/support/pages/home.rb.tt", "spec/support/pages/home.rb"
-        template "spec/support/pages/results.rb.tt", "spec/support/pages/results.rb"
+        template "spec/support/pages/login.rb.tt", "spec/support/pages/login.rb"
+        template "spec/support/pages/session.rb.tt", "spec/support/pages/session.rb"
       end
 
       def data_files
-        template "spec/support/data/search.rb.tt", "spec/support/data/search.rb"
+        template "spec/support/data/invalid_user.rb.tt", "spec/support/data/invald_user.rb"
       end
 
       def test_files
-        template "spec/search_spec.rb.tt", "spec/search_spec.rb"
+        template "spec/login_spec.rb.tt", "spec/login_spec.rb"
       end
     end
   end

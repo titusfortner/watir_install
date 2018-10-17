@@ -1,0 +1,11 @@
+module <%= name.split('_').map(&:capitalize).join %>
+  class Session < Page::Base
+
+    element(:home_link) { browser.link(text: 'Home')}
+    element(:sign_in_link) { browser.link(text: 'Sign In') }
+    element(:invalid_message) { browser.element('data-test': 'notice') } 
+
+    page_url { 'https://a.testaddressbook.com/session' }
+
+  end
+end

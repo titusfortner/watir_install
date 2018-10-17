@@ -1,0 +1,10 @@
+module <%= name.split('_').map(&:capitalize).join %>
+  module Data
+    class InvalidUser < Base
+
+      key(:username) { 'Wrong' }
+      key(:password) { 'Alsowrong' }
+
+    end
+  end
+end
