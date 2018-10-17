@@ -5,7 +5,7 @@ module <%= name.split('_').map(&:capitalize).join %>
     element(:sign_in_link) { browser.link(text: 'Sign In') }
     element(:invalid_message) { browser.element('data-test': 'notice') } 
 
-    page_url { 'https://www.a-testaddressbook.com/session' }
+    page_url { 'https://a.testaddressbook.com/session' }
 
   end
 end

@@ -5,9 +5,9 @@ module <%= name.split('_').map(&:capitalize).join %>
     element(:password) { browser.input(id: 'session_password') }
     element(:sign_in_button) { browser.input('data-test': 'submit') }
 
-    page_url { 'https://www.a-testaddressbook.com/login' }
+    page_url { 'https:/a.testaddressbook.com/sign_in' }
 
-    def login_as(user,pass)
+    def login_as(user, pass)
       username(user)
       password(pass)
       sign_in_button.click
